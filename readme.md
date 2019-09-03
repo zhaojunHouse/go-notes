@@ -62,4 +62,24 @@
     退出：close
  
  # 共享变量的并发   
- 
+    两个以上的groutine其中至少有一个写操作，就存在条件竞争。
+    A1： 不写
+    A2： 在一个groutine中操作变量
+    A3： 互斥锁：不能重入
+    
+    读锁：内存同步 rlock
+    写锁：lock
+    
+    runtime竞争条件检测
+    
+    
+  #测试
+    测试函数、基准测试(benchmark)函数、示例函数
+    
+   # 反射
+    typeof valueof
+    reflect.Value转原始类型
+    获取类型底层类型
+    遍历字段和方法
+    修改字段的值
+    动态调用方法
