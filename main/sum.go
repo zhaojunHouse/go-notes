@@ -22,6 +22,10 @@ func (u User) Print(prfix string){
 	fmt.Printf("%s:Name is %s,Age is %d",prfix,u.Name,u.Age)
 }
 
+func Sum(a int , b int) int {
+	return a+b
+}
+
 func main() {
 	u:= User{"张三",20}
 	t:=reflect.TypeOf(u)
