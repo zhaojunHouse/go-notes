@@ -1,9 +1,22 @@
 ### TODO
 context
+channel
+defer
+select
+range
+goto break continue
+
+grpc
+rpc调用 curl
+如何测试单个函数
+
+为什么使用type struct{}
 锁问题
 分布式锁
-
-
+并发问题
+分布式事务一致性问题。
+git CICD
+分布式
 
 ## 1. 声明/变量/赋值
 

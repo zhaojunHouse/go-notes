@@ -1,51 +1,106 @@
 package main
 
 import (
+	"context"
 	"fmt"
-	"reflect"
+	"net/http"
+	"github.com/labstack/echo"
 )
 
-type User struct{
+type User struct {
 	Name string
-	Age int
+	Age  int
 }
 
-func (u User) Abs2(){
+func (u User) Abs2() {
 	print(1)
 }
 
-func (u *User) abs1()  {
+func (u *User) abs1() {
 	print(2)
 }
 
-func (u User) Print(prfix string){
-	fmt.Printf("%s:Name is %s,Age is %d",prfix,u.Name,u.Age)
+func (u User) Print(prfix string) {
+	fmt.Printf("%s:Name is %s,Age is %d", prfix, u.Name, u.Age)
 }
 
-func Sum(a int , b int) int {
-	return a+b
+func Sum(a int, b int) int {
+	return a + b
+}
+
+type UserInfo struct {
+	ID   int64  `json:"id"`
+	Name string `json:"name"`
+}
+
+func Gen(ctx context.Context) <-chan int {
+	dst := make(chan int)
+	n := 1
+	go func() {
+		for {
+			select {
+			case <-ctx.Done():
+				fmt.Println("ctx canceled")
+				return // returning not to leak the goroutine
+			case dst <- n:
+				n++
+			}
+		}
+	}()
+	return dst
 }
 
 func main() {
-	u:= User{"张三",20}
-	t:=reflect.TypeOf(u)
-	fmt.Println(t)
+	//ctx, cancel := context.WithCancel(context.Background())
+	//defer cancel() // cancel when we are finished consuming integers
+	//
+	//for n := range Gen(ctx) {
+	//	fmt.Println(n)
+	//	if n == 5 {
+	//		fmt.Println("break from loop")
+	//		break
+	//	}
+	//}
 
-	v:=reflect.ValueOf(u)
-	fmt.Println(v)
 
-	u1:=v.Interface().(User)
-	fmt.Println(u1)
 
-	fmt.Println(t.Kind())
+	//d := time.Now().Add(50000 * time.Millisecond)
+	//ctx, cancel := context.WithDeadline(context.Background(), d)
+	//
+	//// Even though ctx will be expired, it is good practice to call its
+	//// cancelation function in any case. Failure to do so may keep the
+	//// context and its parent alive longer than necessary.
+	//defer cancel()
+	//
+	//select {
+	//case <-time.After(1 * time.Second):
+	//	fmt.Println("overslept")
+	//case <-ctx.Done():
+	//	fmt.Println(ctx.Err())
+	//}
 
-	for i:=0;i<t.NumField();i++ {
-		fmt.Println(t.Field(i).Name)
-	}
 
-	for i:=0;i<t.NumMethod() ;i++  {
-		fmt.Println(t.Method(i).Name)
-	}
 
+	//type favContextKey string
+	//
+	//f := func(ctx context.Context, k favContextKey) {
+	//	if v := ctx.Value(k); v != nil {
+	//		fmt.Println("found value:", v)
+	//		return
+	//	}
+	//	fmt.Println("key not found:", k)
+	//}
+	//
+	//k := favContextKey("language")
+	//ctx := context.WithValue(context.Background(), k, "Go")
+	//
+	//f(ctx, k)
+	//f(ctx, favContextKey("color"))
+
+
+	e := echo.New()
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+	e.Logger.Fatal(e.Start(":1323"))
 }
-
