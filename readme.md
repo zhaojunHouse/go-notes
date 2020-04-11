@@ -23,6 +23,13 @@ git CICD
 分布式
 闭包
 
+sourceTree gitlab配置
+git clone http://user:passwor@host
+
+gopath goroot
+go mod tidy
+
+
 ## 1. 声明/变量/赋值
 
 ### 声明关键字
