@@ -23,6 +23,8 @@ git CICD
 分布式
 闭包
 
+mac修改环境变量
+git https ssh
 sourceTree gitlab配置
 git clone http://user:passwor@host
 

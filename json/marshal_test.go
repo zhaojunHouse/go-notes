@@ -2,7 +2,7 @@ package json
 
 import "testing"
 
-// go test -v -run= MarshalHelper *.go
+// go test -v -run=MarshalHelper *.go
 func Test_MarshalHelper(t *testing.T){
 	MarshalHelper()
 }
