@@ -8,7 +8,7 @@ goto break continue
 Panic recover
 闭包closure
 
-
+mock
 如何测试单个函数
 rpc如何调试 curl
 
