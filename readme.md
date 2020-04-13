@@ -9,6 +9,10 @@ Panic recover
 闭包closure
 
 
+如何测试单个函数
+rpc如何调试 curl
+
+
 
 supervisor
 log
@@ -23,8 +27,6 @@ mysql connection pool
 redis connection pool
 kafka
 grpc
-rpc如何调试 curl
-如何测试单个函数
 锁问题
 分布式锁
 并发问题
