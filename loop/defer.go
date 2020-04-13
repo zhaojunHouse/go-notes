@@ -57,7 +57,7 @@ func DeferHelper() {
 	//fmt.Println(f1())    // 返回1
 	//fmt.Println(f2())      // 返回5
 	//fmt.Println(f3())     // 返回10
-	fmt.Println(f4()) // 返回2
+	//fmt.Println(f4()) // 返回2
 	return
 }
 

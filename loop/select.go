@@ -11,6 +11,11 @@ import (
 所有channel表达式都会被求值、所有被发送的表达式都会被求值。求值顺序：自上而下、从左到右
 
 break关键字结束select
+
+goto loop
+break loop
+continue loop
+
 */
 func SelectRole1() {
 	ch1 := make(chan int, 0)
@@ -62,5 +67,36 @@ func SelectBreak() {
 
 		fmt.Println("ch2 selected.")
 		fmt.Println("ch2 selected without break")
+	}
+}
+
+func GotoLoopHelper() {
+	for a := 0; a < 5; a++ {
+		fmt.Println(a)
+		if a > 3 {
+			goto Loop
+		}
+	}
+Loop: //放在for后边. 放在for前面会一直执行。
+	fmt.Println("test")
+}
+
+
+func BreakLoopHelper(){
+Loop:
+	for j:=0;j<3;j++{
+		fmt.Println(j)
+		for a:=0;a<5;a++{
+			fmt.Println(a)
+			if a>1{
+				fmt.Println("a>1 continue loop",)
+				//continue Loop
+				continue Loop
+			}
+		}
+		if j>1 {
+			fmt.Println("j>1 break loop")
+			break Loop
+		}
 	}
 }
