@@ -33,6 +33,15 @@ git CICD
 分布式
 项目整体结构。
 
+mac修改环境变量
+git https ssh
+sourceTree gitlab配置
+git clone http://user:passwor@host
+
+gopath goroot
+go mod tidy
+
+
 ## 1. 声明/变量/赋值
 
 ### 声明关键字
