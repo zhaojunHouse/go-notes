@@ -2,12 +2,13 @@
 // Source: ../person/male.go
 
 // Package mock is a generated GoMock package.
-package mock
+package testmethod
 
 import (
-	gomock "github.com/golang/mock/gomock"
-	person "go-notes/testMethod/person"
+	person "go-notes/testmethod/person"
 	reflect "reflect"
+
+	gomock "github.com/golang/mock/gomock"
 )
 
 // MockMale is a mock of Male interface.

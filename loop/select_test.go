@@ -3,12 +3,12 @@ package loop
 import "testing"
 
 // go test -v -run=SelectRole1 select.go select_test.go
-func Test_SelectRole1(t *testing.T){
+func Test_SelectRole1(t *testing.T) {
 	SelectRole1()
 }
 
 // go test -v -run=SelectBreak select.go select_test.go
-func Test_SelectBreak(t *testing.T){
+func Test_SelectBreak(t *testing.T) {
 	SelectBreak()
 }
 
@@ -18,6 +18,6 @@ func Test_GotoLoopHelper(t *testing.T) {
 }
 
 // go test -v -run=BreakLoopHelper select.go select_test.go
-func Test_BreakLoopHelper(t *testing.T){
+func Test_BreakLoopHelper(t *testing.T) {
 	BreakLoopHelper()
 }

@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"testing"
 )
-/**
-	参考：http://c.biancheng.net/view/124.html
- */
 
+/**
+参考：http://c.biancheng.net/view/124.html
+*/
 
 //  go test -v -bench=. benchmark_test.go
 func Benchmark_Add(b *testing.B) {
@@ -29,6 +29,6 @@ func Benchmark_Add(b *testing.B) {
 */
 func Benchmark_Alloc(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		fmt.Sprintf("%d", i)
+		_ = fmt.Sprintf("%d", i)
 	}
 }

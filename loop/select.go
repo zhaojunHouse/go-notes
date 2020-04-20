@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// SelectRole1 select
 /**
 如果有一个或多个IO操作可以完成，则Go运行时系统会随机的选择一个执行，否则的话，如果有default分支，则执行default分支语句，如果连default都没有，则select语句会一直阻塞，直到至少有一个IO操作可以进行
 
@@ -49,6 +50,7 @@ Loop:
 	}
 }
 
+// SelectBreak select break
 func SelectBreak() {
 	ch1 := make(chan int, 1)
 	ch2 := make(chan int, 1)
@@ -62,7 +64,6 @@ func SelectBreak() {
 
 		break
 
-		fmt.Println("ch1 selected after break")
 	case <-ch2:
 
 		fmt.Println("ch2 selected.")
@@ -70,6 +71,7 @@ func SelectBreak() {
 	}
 }
 
+// GotoLoopHelper goto loop
 func GotoLoopHelper() {
 	for a := 0; a < 5; a++ {
 		fmt.Println(a)
@@ -81,20 +83,20 @@ Loop: //放在for后边. 放在for前面会一直执行。
 	fmt.Println("test")
 }
 
-
-func BreakLoopHelper(){
+// BreakLoopHelper break loop
+func BreakLoopHelper() {
 Loop:
-	for j:=0;j<3;j++{
+	for j := 0; j < 3; j++ {
 		fmt.Println(j)
-		for a:=0;a<5;a++{
+		for a := 0; a < 5; a++ {
 			fmt.Println(a)
-			if a>1{
-				fmt.Println("a>1 continue loop",)
+			if a > 1 {
+				fmt.Println("a>1 continue loop")
 				//continue Loop
 				continue Loop
 			}
 		}
-		if j>1 {
+		if j > 1 {
 			fmt.Println("j>1 break loop")
 			break Loop
 		}

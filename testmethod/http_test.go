@@ -1,4 +1,4 @@
-package testMethod
+package testmethod
 
 import (
 	"io/ioutil"

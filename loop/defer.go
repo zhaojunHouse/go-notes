@@ -18,13 +18,13 @@ panic异常的捕获
 修改函数命名返回值
 */
 
-// panic异常的捕获
+// DeferPanic panic异常的捕获
 func DeferPanic() {
 	f()
 	fmt.Println("Returned normally from f.")
 }
 
-// 规则三:defer表达式中可以修改函数中的命名返回值
+// DeferUpdateFuncResult 规则三:defer表达式中可以修改函数中的命名返回值
 func DeferUpdateFuncResult() {
 	fmt.Println(test())
 }
@@ -34,6 +34,7 @@ start 7
 end 8
 8
 */
+// test 测试闭包
 func test() (res int) {
 	res = 1
 	defer func() {
@@ -44,6 +45,7 @@ func test() (res int) {
 	return 7
 }
 
+// DeferHelper 延迟
 /**
 规则一:defer表达式中变量的值在defer表达式被定义时就已经明确
 规则二:defer表达式的调用顺序是按照先进后出的方式
@@ -61,7 +63,7 @@ func DeferHelper() {
 	return
 }
 
-// defer可以修改函数命名返回值。
+// f1 defer可以修改函数命名返回值。
 func f1() (result int) {
 	defer func() {
 		result++
@@ -69,7 +71,7 @@ func f1() (result int) {
 	return 0
 }
 
-// defer可以修改函数命名返回值。r = t
+// f2 defer可以修改函数命名返回值。r = t
 func f2() (r int) {
 	t := 5
 	defer func() {
@@ -78,7 +80,7 @@ func f2() (r int) {
 	return t
 }
 
-// defer可以修改函数命名返回值。
+// f3 defer可以修改函数命名返回值。
 func f3() (t int) {
 	t = 5
 	defer func() {
@@ -87,7 +89,7 @@ func f3() (t int) {
 	return t
 }
 
-// defer带参数值的闭包。
+// f4 defer带参数值的闭包。
 func f4() (r int) {
 	defer func(r int) {
 		fmt.Println("defer--r", r)
@@ -97,13 +99,13 @@ func f4() (r int) {
 	return 2
 }
 
-// defer 闭包， 闭包传递的是指针。
+// DeferBibao defer 闭包， 闭包传递的是指针。
 func DeferBibao() {
 	//fmt.Println(a())
 	fmt.Println(b())
 }
 
-// 如果你在定义defer的时候,就要将defer后面的函数参数等入栈,等到ruturn之前的时候出栈执行,a中是将i的拷贝直接入栈,b中通过一个闭包调用,实际上将i的指针传递给闭包,闭包读取值拷贝给add.
+// a 如果你在定义defer的时候,就要将defer后面的函数参数等入栈,等到ruturn之前的时候出栈执行,a中是将i的拷贝直接入栈,b中通过一个闭包调用,实际上将i的指针传递给闭包,闭包读取值拷贝给add.
 func a() int {
 	var i int
 	defer add(i) //这里虽然defer是在return之前执行,但是在定义的时候,
@@ -115,6 +117,7 @@ func a() int {
 	return i //return  0
 }
 
+// b test closure
 func b() int {
 	var i int
 	defer func() {
@@ -124,12 +127,14 @@ func b() int {
 	return i //return  0
 }
 
+// add
 func add(i int) {
-	i += 1
+	i++
 	fmt.Println("add----", i)
 
 }
 
+// f
 func f() {
 	defer func() {
 		if r := recover(); r != nil {
@@ -141,6 +146,7 @@ func f() {
 	fmt.Println("Returned normally from g.")
 }
 
+// g
 func g() {
 	panic("ERROR")
 }

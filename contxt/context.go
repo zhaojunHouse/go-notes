@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// CancelContext cancel context
 func CancelContext() {
 	gen := func(ctx context.Context) <-chan int {
 		dst := make(chan int)
@@ -35,6 +36,7 @@ func CancelContext() {
 	}
 }
 
+// ContextWithDeadline context超时
 func ContextWithDeadline() {
 	d := time.Now().Add(5 * time.Second)
 	ctx, cancel := context.WithDeadline(context.Background(), d)
@@ -56,6 +58,7 @@ Loop:
 	}
 }
 
+// ContextWithTimeout context超时
 func ContextWithTimeout() {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -74,6 +77,7 @@ Loop:
 
 }
 
+// ContextWithValue context设置值
 func ContextWithValue() {
 	type favContextKey string
 

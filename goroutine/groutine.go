@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"time"
 )
+
 /**
 参考
 https://blog.csdn.net/cgl1079743846/article/details/90691146
 http://litang.me/post/golang-channel/
- */
-
+*/
 
 // channel特性
 // 从一个nil channel接收数据会一直阻塞
@@ -24,8 +24,6 @@ http://litang.me/post/golang-channel/
 // 可以使用val, ok := <-ch 方式来判断channel是否关闭，ok为true表示channel未关闭，ok为false表示channel关闭
 // 支持多个goroutine同时消费一个Channel，可用于并发处理场景
 
-
-
 // Channel最常见用法主要是以下6种
 //
 //goroutine之间同步通信
@@ -38,11 +36,10 @@ http://litang.me/post/golang-channel/
 /**
 futures / promises
 一对一通知
- */
+*/
 
-
-// channel用法1 ： 等待groutine完成
-func ChannelWaitingCompleted(){
+// ChannelWaitingCompleted channel用法1 ： 等待groutine完成
+func ChannelWaitingCompleted() {
 	println("start main")
 	ch := make(chan bool)
 	defer close(ch)
@@ -57,11 +54,11 @@ func ChannelWaitingCompleted(){
 	println("end main")
 }
 
-// channel 用法2 ：多个groutine协同
-func ChannelSum(){
+// ChannelSum channel 用法2 ：多个groutine协同
+func ChannelSum() {
 	println("start main")
 	ch := make(chan int)
-	defer  close(ch)
+	defer close(ch)
 
 	var result int
 	go func() {
@@ -89,10 +86,8 @@ func ChannelSum(){
 	println("end main")
 }
 
-
-
-// channel用法3： select
-func ChannelSelect(){
+// ChannelSelect channel用法3： select
+func ChannelSelect() {
 	println("start main")
 	cond1 := make(chan int)
 	cond2 := make(chan uint64)
@@ -115,12 +110,12 @@ func ChannelSelect(){
 		select {
 		case a := <-cond1:
 			if a > 99 {
-				println("end with cond1","a=",a)
+				println("end with cond1", "a=", a)
 				endCond = true
 			}
 		case b := <-cond2:
 			if b == 100 {
-				println("end with cond2","b=",b)
+				println("end with cond2", "b=", b)
 				endCond = true
 			}
 		case <-time.After(time.Microsecond):
@@ -132,7 +127,8 @@ func ChannelSelect(){
 	println("end main")
 }
 
-func ChannelBuffer (){
+// ChannelBuffer 带缓冲的channel
+func ChannelBuffer() {
 	println("start main")
 	ch := make(chan int, 4)
 	go func() {
@@ -149,7 +145,8 @@ func ChannelBuffer (){
 	println("end main")
 }
 
-func ChannelNoBuffer(){
+// ChannelNoBuffer channel no buffer
+func ChannelNoBuffer() {
 	var ch = make(chan int)
 	go func() {
 		ch <- 1
@@ -158,8 +155,8 @@ func ChannelNoBuffer(){
 	println(<-ch)
 }
 
-// 广播
-func ChannelClose(){
+// ChannelClose 广播
+func ChannelClose() {
 	N := 10
 	exit := make(chan struct{})
 	done := make(chan struct{}, N)
@@ -188,4 +185,3 @@ func ChannelClose(){
 	}
 	fmt.Println("main goroutine exit")
 }
-
