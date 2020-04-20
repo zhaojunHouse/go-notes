@@ -3,8 +3,8 @@ package user
 import (
 	"testing"
 
-	"../mock"
-	"../person"
+	"go-notes/testMethod/mock"
+	"go-notes/testMethod/person"
 
 	"github.com/golang/mock/gomock"
 )
@@ -16,7 +16,7 @@ func Test_GetUserInfo(t *testing.T) {
 
 	var id int64 = 1
 	mockMale := mock.NewMockMale(ctl)
-	maleInfo := person.MaleInfo{Male: 2}
+	maleInfo := person.MaleInfo{Male: 222222}
 	gomock.InOrder(
 		mockMale.EXPECT().Get(id).Return(maleInfo, nil),
 	)

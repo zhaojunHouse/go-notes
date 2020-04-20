@@ -1,7 +1,7 @@
 package user
 
 import (
-	"../person"
+	"go-notes/testMethod/person"
 	"fmt"
 )
 

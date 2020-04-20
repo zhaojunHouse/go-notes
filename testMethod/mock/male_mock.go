@@ -5,8 +5,8 @@
 package mock
 
 import (
-	command_line_arguments "command-line-arguments"
 	gomock "github.com/golang/mock/gomock"
+	person "go-notes/testMethod/person"
 	reflect "reflect"
 )
 
@@ -34,10 +34,10 @@ func (m *MockMale) EXPECT() *MockMaleMockRecorder {
 }
 
 // Get mocks base method.
-func (m *MockMale) Get(id int64) (command_line_arguments.MaleInfo, error) {
+func (m *MockMale) Get(id int64) (person.MaleInfo, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Get", id)
-	ret0, _ := ret[0].(command_line_arguments.MaleInfo)
+	ret0, _ := ret[0].(person.MaleInfo)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
