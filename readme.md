@@ -9,8 +9,6 @@
     闭包closure
     gopath goroot
     go mod init  && go mod tidy
-    
-    
     go lint && go test && make
     
     mock
