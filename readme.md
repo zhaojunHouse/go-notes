@@ -7,6 +7,11 @@
     goto break continue
     Panic recover
     闭包closure
+    gopath goroot
+    go mod init  && go mod tidy
+    
+    
+    go lint && go test && make
     
     mock
     如何测试单个函数
@@ -40,9 +45,7 @@
     git https ssh
     sourceTree gitlab配置
     git clone http://user:passwor@host
-    
-    gopath goroot
-    go mod tidy
+   
 
 
 ## 1. 声明/变量/赋值
