@@ -6,6 +6,19 @@ import (
 	"net/http/httptest"
 )
 
+type User struct {
+	ID int64 `json:"id"`
+	Name string `json:"name"`
+	Age int32 `json:"age"`
+}
+
+type IUser interface {
+	GetUserInfo(userID int64)(*User, error)
+	UpdateUser(user *User) error
+	AddUser(user *User) error
+}
+
+
 func Routes(){
 	http.HandleFunc("/sendjson",SendJSON)
 }

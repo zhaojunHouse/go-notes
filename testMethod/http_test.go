@@ -8,27 +8,26 @@ import (
 	"testing"
 )
 
-func init()  {
+func init() {
 	Routes()
 }
 
 // go test -v -run=SendJSON *.go
-func Test_SendJSON(t *testing.T){
-	req,err:=http.NewRequest(http.MethodPost,"/sendjson",nil)
-	if err!=nil {
+func Test_SendJSON(t *testing.T) {
+	req, err := http.NewRequest(http.MethodPost, "/sendjson", nil)
+	if err != nil {
 		t.Fatal("创建Request失败")
 	}
-	rw:=httptest.NewRecorder()
-	http.DefaultServeMux.ServeHTTP(rw,req)
+	rw := httptest.NewRecorder()
+	http.DefaultServeMux.ServeHTTP(rw, req)
 
-	log.Println("code:",rw.Code)
+	log.Println("code:", rw.Code)
 
-	log.Println("body:",rw.Body.String())
+	log.Println("body:", rw.Body.String())
 }
 
-
 // go test -v -run=MockServer *.go
-func Test_MockServer(t *testing.T){
+func Test_MockServer(t *testing.T) {
 	//创建一个模拟的服务器
 	server := MockServer()
 	defer server.Close()
