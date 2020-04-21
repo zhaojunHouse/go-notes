@@ -2,6 +2,7 @@ package testmethod
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 )
@@ -40,20 +41,29 @@ func SendJSON(rw http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(rw).Encode(u)
 }
 
+// GetUserInfo 获取用户信息
+func GetUserInfo(userID int64) (User, error) {
+	return User{
+		ID:   1,
+		Name: "里斯",
+		Age:  22,
+	}, nil
+}
+
+// SingleFunc 测试单个函数
+func SingleFunc(rw http.ResponseWriter, r *http.Request) {
+	u, err := GetUserInfo(1)
+	if err != nil {
+		fmt.Println("err:", err.Error())
+	}
+
+	rw.Header().Set("Content-Type", "application/json")
+	rw.WriteHeader(http.StatusOK)
+	json.NewEncoder(rw).Encode(u)
+}
+
 // MockServer mock server
 func MockServer() *httptest.Server {
-	//API调用处理函数
-	sendJSON := func(rw http.ResponseWriter, r *http.Request) {
-		u := struct {
-			Name string
-		}{
-			Name: "张三",
-		}
-
-		rw.Header().Set("Content-Type", "application/json")
-		rw.WriteHeader(http.StatusOK)
-		json.NewEncoder(rw).Encode(u)
-	}
 	//适配器转换
-	return httptest.NewServer(http.HandlerFunc(sendJSON))
+	return httptest.NewServer(http.HandlerFunc(SingleFunc))
 }
