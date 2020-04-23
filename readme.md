@@ -10,14 +10,14 @@
     gopath goroot
     go mod init  && go mod tidy
     go lint && go test && make
-    
-    mock
+    mock interface
     如何测试单个函数
-    rpc如何调试 curl
+    
+    log
+    
     
     
     supervisor
-    log
     网关
     load config
     HTTP server
@@ -28,7 +28,7 @@
     mysql connection pool
     redis connection pool
     kafka
-    grpc
+    grpc rpc如何调试 curl
     锁问题
     分布式锁
     并发问题
