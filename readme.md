@@ -12,15 +12,17 @@
     go lint && go test && make
     mock interface
     如何测试单个函数
+    网关
     
-    log
+   
+    HTTP server
+    
     
     
     
     supervisor
-    网关
+    log
     load config
-    HTTP server
     RPC server
     Tracing
     PProf
