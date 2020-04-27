@@ -1,4 +1,6 @@
-package main
+package router
+
+
 
 import (
 	"fmt"
@@ -43,8 +45,4 @@ func startServer() {
 	if err != nil {
 		log.Fatalln("ListenAndServe: ", err)
 	}
-}
-
-func main() {
-	startServer()
 }
