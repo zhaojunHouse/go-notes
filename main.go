@@ -13,22 +13,6 @@ import (
 	"time"
 )
 
-var (
-	server   *http.Server
-	listener net.Listener
-	graceful = flag.Bool("graceful", false, "listen on fd open 3 (internal use only)")
-)
-
-func sleep(w http.ResponseWriter, r *http.Request) {
-	duration, err := time.ParseDuration(r.FormValue("duration"))
-	if err != nil {
-		http.Error(w, err.Error(), 400)
-		return
-	}
-	time.Sleep(duration)
-	w.Write([]byte("Hello World zj"))
-}
-
 func main() {
 	flag.Parse()
 
@@ -59,6 +43,23 @@ func main() {
 	signalHandler()
 	log.Printf("signal end")
 }
+
+var (
+	server   *http.Server
+	listener net.Listener
+	graceful = flag.Bool("graceful", false, "listen on fd open 3 (internal use only)")
+)
+
+func sleep(w http.ResponseWriter, r *http.Request) {
+	duration, err := time.ParseDuration(r.FormValue("duration"))
+	if err != nil {
+		http.Error(w, err.Error(), 400)
+		return
+	}
+	time.Sleep(duration)
+	w.Write([]byte("Hello World zj\n"))
+}
+
 
 func reload() error {
 	tl, ok := listener.(*net.TCPListener)
