@@ -12,7 +12,7 @@ import (
 	"syscall"
 	"time"
 )
-
+// todo test git tag
 func main() {
 	flag.Parse()
 
