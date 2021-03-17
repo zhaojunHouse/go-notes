@@ -15,6 +15,7 @@ require (
 	github.com/olivere/elastic v6.2.34+incompatible // indirect
 	github.com/satori/go.uuid v1.2.0
 	github.com/stretchr/testify v1.5.1 // indirect
+	github.com/thinkeridea/go-extend v1.3.2 // indirect
 	github.com/zieckey/etcdsync v0.0.0-20180810020013-cd5b26bc05a1 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/olivere/elastic.v5 v5.0.86
