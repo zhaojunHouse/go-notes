@@ -1,8 +1,7 @@
 package config
 
-
 type Config struct {
-	DB DB
+	DB    DB
 	Mongo Mongo
 }
 
@@ -16,5 +15,5 @@ type DB struct {
 type Mongo struct {
 	Host string
 	Name string
-	Url string
+	Url  string
 }

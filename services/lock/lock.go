@@ -4,6 +4,7 @@ import (
 	"github.com/go-redis/redis"
 	"time"
 )
+
 /**
 {
 	CAP理论： 一致性，可用性，分区容错性
@@ -39,11 +40,10 @@ import (
 }
 */
 
-
-func Lock(redisDB *redis.Client, lockKey string, duration time.Duration)(bool , error){
+func Lock(redisDB *redis.Client, lockKey string, duration time.Duration) (bool, error) {
 	return redisDB.SetNX(lockKey, "", duration).Result()
 }
 
-func UnLock(redisDB *redis.Client, lockKey string)(int64, error) {
+func UnLock(redisDB *redis.Client, lockKey string) (int64, error) {
 	return redisDB.Del(lockKey).Result()
 }

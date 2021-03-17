@@ -6,7 +6,7 @@ import (
 	"unicode/utf8"
 )
 
-func RuneCountHelper() error{
+func RuneCountHelper() error {
 	buf := []byte("Hello, 世" +
 		"界")
 	fmt.Println("bytes =", len(buf))
@@ -14,11 +14,10 @@ func RuneCountHelper() error{
 	return nil
 }
 
-func RuneCountInString() error{
+func RuneCountInString() error {
 	str := "   Hello,     世界23   "
 	fmt.Println("bytes =", len(str))
 	fmt.Println("runes =", utf8.RuneCountInString(str))
-
 
 	// 去除空格
 	str = strings.Replace(str, " ", "", -1)

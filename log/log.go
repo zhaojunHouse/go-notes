@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-func InitLog() error{
+func InitLog() error {
 	var stdFormatter *prefixed.TextFormatter  // 命令行输出格式
 	var fileFormatter *prefixed.TextFormatter // 文件输出格式
 
@@ -32,16 +32,26 @@ func InitLog() error{
 	log.SetReportCaller(true)
 	log.SetLevel(log.DebugLevel)
 
-	logName := fmt.Sprintf("%s/access_log.", "log")
-	writer, err := rotatelogs.New(logName + "%Y%m%d")
+	accessLogName := fmt.Sprintf("%s/access_log.", "log")
+	accessWriter, err := rotatelogs.New(accessLogName + "%Y%m%d")
 	if err != nil {
+		fmt.Println(err.Error())
 		return err
 	}
+
+	errorLogName := fmt.Sprintf("%s/error_log.", "log")
+	errorWriter, err := rotatelogs.New(errorLogName + "%Y%m%d")
+	if err != nil {
+		fmt.Println(err.Error())
+		return err
+	}
+
 	lfHook := lfshook.NewHook(lfshook.WriterMap{
-		log.InfoLevel:  writer,
-		log.DebugLevel: writer,
-		log.ErrorLevel: writer,
+		log.InfoLevel:  accessWriter,
+		log.DebugLevel: accessWriter,
+		log.ErrorLevel: errorWriter,
 	}, fileFormatter)
+
 	log.SetOutput(os.Stdout)
 	log.AddHook(lfHook)
 	return nil

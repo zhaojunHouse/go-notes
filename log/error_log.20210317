@@ -1,0 +1,2 @@
+[2021-03-17 15:42:06.748179] ERROR test error%!(EXTRA config.DB={127.0.0.1 root 1234214 3306})
+[2021-03-17 15:43:08.528237] ERROR test error,{Name:127.0.0.1 User:root Password:1234214 Port:3306}

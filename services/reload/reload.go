@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-func start(){
+func start() {
 	flag.Parse()
 
 	http.HandleFunc("/sleep", sleep)
@@ -60,7 +60,6 @@ func sleep(w http.ResponseWriter, r *http.Request) {
 	time.Sleep(duration)
 	w.Write([]byte("Hello World zj\n"))
 }
-
 
 func reload() error {
 	tl, ok := listener.(*net.TCPListener)
@@ -112,4 +111,3 @@ func signalHandler() {
 		}
 	}
 }
-

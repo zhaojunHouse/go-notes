@@ -136,7 +136,7 @@ func query() {
 	var err error
 	//取所有
 	res, err = client.Search("db1").Type("table1").Do(context.Background())
-	printEmployee("取所有",res, err)
+	printEmployee("取所有", res, err)
 
 	//字段相等
 	q := elastic.NewQueryStringQuery("last_name:yike")
@@ -144,7 +144,7 @@ func query() {
 	if err != nil {
 		println(err.Error())
 	}
-	printEmployee("字段相等",res, err)
+	printEmployee("字段相等", res, err)
 
 	if res.Hits.TotalHits > 0 {
 		fmt.Printf("Found a total of %d Employee \n", res.Hits.TotalHits)
@@ -169,40 +169,40 @@ func query() {
 	boolQ.Must(elastic.NewMatchQuery("last_name", "smith"))
 	boolQ.Filter(elastic.NewRangeQuery("age").Gt(30))
 	res, err = client.Search("db1").Type("table1").Query(q).Do(context.Background())
-	printEmployee("条件查询",res, err)
+	printEmployee("条件查询", res, err)
 
 	//短语搜索 搜索about字段中有 rock climbing
 	matchPhraseQuery := elastic.NewMatchPhraseQuery("about", "rock")
 	res, err = client.Search("db1").Type("table1").Query(matchPhraseQuery).Do(context.Background())
-	printEmployee("短语搜索",res, err)
+	printEmployee("短语搜索", res, err)
 
 	//分析 interests
 	aggs := elastic.NewTermsAggregation().Field("interests")
 	res, err = client.Search("db1").Type("table1").Aggregation("all_interests", aggs).Do(context.Background())
-	printEmployee("分析",res, err)
+	printEmployee("分析", res, err)
 
 }
 
 //简单分页
-func list(size,page int) {
+func list(size, page int) {
 	if size < 0 || page < 1 {
 		fmt.Printf("param error")
 		return
 	}
-	res,err := client.Search("db1").
+	res, err := client.Search("db1").
 		Type("table1").
 		Size(size).
-		From((page-1)*size).
+		From((page - 1) * size).
 		Do(context.Background())
-	printEmployee("分页",res, err)
+	printEmployee("分页", res, err)
 
 }
 
 //打印查询到的Employee
-func printEmployee(desc string,res *elastic.SearchResult, err error) {
+func printEmployee(desc string, res *elastic.SearchResult, err error) {
 	fmt.Printf("%#v\n", desc)
 	if err != nil {
-		print(err.Error()+"\n")
+		print(err.Error() + "\n")
 		return
 	}
 	var typ Employee
@@ -218,5 +218,5 @@ func main() {
 	//update()
 	//gets()
 	query()
-	list(5,1)
+	list(5, 1)
 }

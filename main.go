@@ -20,14 +20,12 @@ import (
 var Conf config.Config
 
 func init() {
-	// init log module
 	err := myLog.InitLog()
 	if err != nil {
 		log.Errorln(err.Error())
 		return
 	}
 
-	// init config module
 	err = configor.Load(&Conf, "config/conf.json")
 	if err != nil {
 		log.Errorln(err.Error())
@@ -37,4 +35,5 @@ func init() {
 
 func main() {
 	log.Info(Conf.DB)
+	log.Errorf("test error,%+v", Conf.DB)
 }

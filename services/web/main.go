@@ -10,7 +10,7 @@ func AddElement(slice []int, e int) []int {
 
 func main() {
 	orderLen := 5
-	order := make([]uint16, 2 * orderLen)
+	order := make([]uint16, 2*orderLen)
 
 	pollorder := order[:orderLen:orderLen]
 	lockorder := order[orderLen:][:orderLen:orderLen]
