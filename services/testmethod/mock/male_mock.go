@@ -5,7 +5,7 @@
 package testmethod
 
 import (
-	person "go-notes/testmethod/person"
+	person "go-notes/services/testmethod/person"
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"

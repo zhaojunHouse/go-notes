@@ -2,7 +2,7 @@ package user
 
 import (
 	"fmt"
-	"go-notes/testmethod/person"
+	"go-notes/services/testmethod/person"
 )
 
 // User user

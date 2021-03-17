@@ -1,0 +1,13 @@
+{
+    "DB":{
+        "Name":"127.0.0.1",
+        "User":"root",
+        "Password":"1234214",
+        "Port":3306
+    },
+    "Mongo": {
+        "Host":"127.0.0.1:1024",
+        "Name":"ucloud",
+        "Url":"http://e2352.com"
+    }
+}

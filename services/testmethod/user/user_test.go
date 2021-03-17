@@ -1,8 +1,8 @@
 package user
 
 import (
-	mock "go-notes/testmethod/mock"
-	"go-notes/testmethod/person"
+	mock "go-notes/services/testmethod/mock"
+	"go-notes/services/testmethod/person"
 	"testing"
 
 	"github.com/golang/mock/gomock"
