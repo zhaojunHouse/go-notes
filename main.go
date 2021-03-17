@@ -1,39 +1,40 @@
 package main
 
 import (
-	"fmt"
 	"github.com/jinzhu/configor"
-	"go-notes/config"
 	log "github.com/sirupsen/logrus"
+	"go-notes/config"
+	myLog "go-notes/log"
 )
 
 /**
     config
 	log
+	gateway
 	http server
 	rpc server
 	mysql
 	reload
- */
+*/
 
 var Conf config.Config
 
-// init config and log module
-func init(){
-	log.SetFormatter(&log.TextFormatter{
-		DisableColors: true,
-		FullTimestamp: true,
-		TimestampFormat:"2006-01-02 15:04:05",
-	})
-	log.SetReportCaller(true)
-
-	err := configor.Load(&Conf, "config/conf.json")
+func init() {
+	// init log module
+	err := myLog.InitLog()
 	if err != nil {
-		fmt.Println(err.Error())
+		log.Errorln(err.Error())
+		return
+	}
+
+	// init config module
+	err = configor.Load(&Conf, "config/conf.json")
+	if err != nil {
+		log.Errorln(err.Error())
 		return
 	}
 }
 
 func main() {
-	log.Infof("%+v",Conf.Mongo)
+	log.Info(Conf.DB)
 }
