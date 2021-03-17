@@ -9,6 +9,7 @@ require (
 	github.com/golang/mock v1.4.3
 	github.com/jinzhu/configor v1.2.1
 	github.com/json-iterator/go v1.1.10 // indirect
+	github.com/julienschmidt/httprouter v1.3.0
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/lestrrat-go/file-rotatelogs v2.4.0+incompatible

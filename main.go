@@ -5,17 +5,9 @@ import (
 	log "github.com/sirupsen/logrus"
 	"go-notes/config"
 	myLog "go-notes/log"
+	"go-notes/router"
+	"net/http"
 )
-
-/**
-    config
-	log
-	gateway
-	http server
-	rpc server
-	mysql
-	reload
-*/
 
 var Conf config.Config
 
@@ -33,7 +25,19 @@ func init() {
 	}
 }
 
+/**
+http server
+rpc server
+mysql
+reload
+gateway
+tracing
+test
+*/
+
 func main() {
-	log.Info(Conf.DB)
-	log.Errorf("test error,%+v", Conf.DB)
+	err := http.ListenAndServe(":8080", router.Router())
+	if err != nil {
+		log.Error("HTTP SERVER start failed:", err.Error())
+	}
 }
