@@ -1,9 +1,12 @@
 package user
 
-import "context"
+import (
+	"context"
+	"github.com/labstack/echo"
+)
 
 type UserHandlerInterface interface {
-	GetUser(ctx context.Context, userID int64) interface{}
+	GetUser(ctx echo.Context) error
 	UpdateUser(ctx context.Context, userID int64) interface{}
 }
 

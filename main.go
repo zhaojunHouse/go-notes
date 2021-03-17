@@ -4,9 +4,10 @@ import (
 	"github.com/jinzhu/configor"
 	log "github.com/sirupsen/logrus"
 	"go-notes/config"
+	"go-notes/handler/order"
+	"go-notes/handler/user"
 	myLog "go-notes/log"
 	"go-notes/router"
-	"net/http"
 )
 
 var Conf config.Config
@@ -36,7 +37,11 @@ test
 */
 
 func main() {
-	err := http.ListenAndServe(":8080", router.Router())
+	userHandler := user.NewUserHandler()
+	orderHandler := order.NewOrderHandler()
+
+	engine := router.Router(userHandler, orderHandler)
+	err := engine.Start(":8080")
 	if err != nil {
 		log.Error("HTTP SERVER start failed:", err.Error())
 	}

@@ -1,22 +1,17 @@
 package router
 
 import (
-	"fmt"
-	"github.com/julienschmidt/httprouter"
-	"net/http"
+	"github.com/labstack/echo"
+	"go-notes/handler/order"
+	"go-notes/handler/user"
 )
 
-func Router() *httprouter.Router {
-	router := httprouter.New()
-	router.GET("/", Index)
-	router.GET("/hello/:name", Hello)
-	return router
-}
-
-func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprint(w, "Welcome!\n")
-}
-
-func Hello(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	fmt.Fprintf(w, "hello, %s!\n", ps.ByName("name"))
+func Router(
+	userHandlerInterface user.UserHandlerInterface,
+	orderHandlerInterface order.OrderHandlerInterface,
+) *echo.Echo {
+	engine := echo.New()
+	engine.GET("/user", userHandlerInterface.GetUser)
+	engine.GET("/order", orderHandlerInterface.GetOrder)
+	return engine
 }
