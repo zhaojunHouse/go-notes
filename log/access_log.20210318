@@ -4,3 +4,10 @@
 [2021-03-18 00:12:44.968007]  INFO GetOrder method
 [2021-03-18 00:12:51.182385]  INFO getUser method
 [2021-03-18 00:18:42.591106]  INFO getUser method
+[2021-03-18 09:43:46.614922]  INFO getUser method
+[2021-03-18 09:43:51.725616]  INFO GetOrder method
+[2021-03-18 09:53:21.640168]  INFO getUser handler
+[2021-03-18 09:55:19.762981]  INFO getUser handler
+[2021-03-18 09:59:18.712224]  INFO getUser handler
+[2021-03-18 10:03:53.104963]  INFO getUser handler
+[2021-03-18 10:03:57.434677]  INFO GetOrder method

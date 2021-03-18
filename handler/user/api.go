@@ -1,18 +1,20 @@
 package user
 
 import (
-	"context"
 	"github.com/labstack/echo"
+	"go-notes/logic/user"
 )
 
 type UserHandlerInterface interface {
 	GetUser(ctx echo.Context) error
-	UpdateUser(ctx context.Context, userID int64) interface{}
 }
 
 type User struct {
+	userLogic user.UserLogicInterface
 }
 
-func NewUserHandler() UserHandlerInterface {
-	return &User{}
+func NewUserHandler(userLogic user.UserLogicInterface) UserHandlerInterface {
+	return &User{
+		userLogic: userLogic,
+	}
 }
