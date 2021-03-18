@@ -29,11 +29,13 @@ func init() {
 
 /**
 http server
-rpc server
-mysql
-reload
-gateway
+中间件
 tracing
+reload
+
+
+rpc server
+mysql mongo falcon influx
 test
 */
 
@@ -45,7 +47,7 @@ func main() {
 	userHandler := user.NewUserHandler(userLogic)
 	orderHandler := order.NewOrderHandler()
 
-	// router 层
+	// 注册router
 	engine := router.Router(userHandler, orderHandler)
 	err := engine.Start(":8080")
 	if err != nil {
